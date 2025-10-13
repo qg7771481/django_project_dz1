@@ -4,7 +4,6 @@ from django.db import models
 from django.urls import reverse
 
 
-
 class Category(models.Model):
     name = models.CharField(max_length=200, db_index=True, verbose_name="Назва категорії")
     slug = models.SlugField(max_length=200, unique=True, verbose_name="URL-слаг")
@@ -21,6 +20,7 @@ class Category(models.Model):
     def get_absolute_url(self):
         return reverse('products:category_detail', args=[self.slug])
 
+
 class Product(models.Model):
     """Модель товару."""
 
@@ -35,9 +35,7 @@ class Product(models.Model):
     category = models.ForeignKey(
         Category,
         related_name='products',
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
+        on_delete=models.CASCADE,
         verbose_name="Категорія"
     )
 
@@ -47,6 +45,6 @@ class Product(models.Model):
         Приклад http://127.0.0.1:8000/products/3/samsung/
         """
         return reverse(
-             "products:product_detail",
+            "products:product_detail",
             kwargs={"product_pk": self.pk, "product_slug": self.slug},
         )
