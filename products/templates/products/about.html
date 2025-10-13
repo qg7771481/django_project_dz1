@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Про нас - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+<div class="container about-us-container">
+    <h1 class="text-center my-4">Про нашу компанію</h1>
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <p class="lead">
+                Ласкаво просимо до нашого інтернет-магазину
+            </p>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
