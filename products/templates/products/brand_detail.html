@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ brand.name }} - Детальна інформація</title>
+    <link rel="stylesheet" href="{% static 'css/brand.css' %}">
+</head>
+<body>
+
+    <div class="container">
+        <div class="brand-card">
+            <div class="brand-card-image">
+                {% if brand.image %}
+                    <img src="{{ brand.image.url }}" alt="Логотип {{ brand.name }}">
+                {% else %}
+                    <p>Зображення відсутнє</p>
+                {% endif %}
+            </div>
+
+            <div class="brand-card-info">
+                <h2>{{ brand.name }}</h2>
+                <p><strong>Країна:</strong> {{ brand.country }}</p>
+                <p>{{ brand.description|linebreaks }}</p> </div>
+        </div>
+
+        <a href="{% url 'products:brand_list' %}" class="back-link">← Повернутися до списку</a>
+    </div>
+
+</body>
+</html>

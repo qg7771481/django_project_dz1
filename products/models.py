@@ -48,3 +48,13 @@ class Product(models.Model):
             "products:product_detail",
             kwargs={"product_pk": self.pk, "product_slug": self.slug},
         )
+
+
+class Brand(models.Model):
+    name = models.CharField(max_length=100)
+    country = models.CharField(max_length=100)
+    description = models.TextField(max_length=255)
+    image = models.ImageField(null=True, blank=True)
+
+    # def get_absolute_url(self):
+    #     return reverse("products:brand_detail", kwargs={"pk": self.pk})

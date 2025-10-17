@@ -27,3 +27,5 @@ urlpatterns = [
     path("products/", include("products.urls")),
     # потрібно для роботи зі статичними файлами в режимі розробки DEBUG=True
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

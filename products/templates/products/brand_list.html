@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Усі бренди</title>
+    <link rel="stylesheet" href="{% static 'css/brand.css' %}">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Каталог брендів</h1>
+
+        {% if brands %}
+            <table class="brands-table">
+                <thead>
+                    <tr>
+                        <th>Назва</th>
+                        <th>Країна</th>
+                        <th>Опис</th>
+                        <th>Зображення</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for brand in brands %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'products:brand_detail' brand.pk %}">{{ brand.name }}</a>
+                        </td>
+                        <td>{{ brand.country }}</td>
+                        <td>{{ brand.description|truncatewords:20 }}</td> <td>
+                            {% if brand.image %}
+                                <img src="{{ brand.image.url }}" alt="Логотип {{ brand.name }}">
+                            {% else %}
+                                <span>—</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Наразі немає жодного бренду для відображення.</p>
+        {% endif %}
+    </div>
+
+</body>
+</html>

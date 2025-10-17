@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Product, Category
+from .models import Product, Category, Brand
 
 
 @admin.register(Category)
@@ -15,3 +15,8 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = ['name', 'slug', 'price', 'available']
     list_filter = ['created', 'available']
     list_editable = ['price', 'available']
+
+@admin.register(Brand)
+class BrandAdmin(admin.ModelAdmin):
+    list_display = ['name', 'description', 'country']
+    list_editable = ['country']

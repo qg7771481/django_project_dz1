@@ -7,7 +7,7 @@ from django.http.response import (
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import DetailView, ListView, TemplateView
 
-from .models import Product, Category
+from .models import Product, Category, Brand
 
 
 def product_list(request: HttpRequest) -> HttpResponse:
@@ -52,6 +52,19 @@ class ProductDetailView(DetailView):
     slug_url_kwarg = "product_slug"
     context_object_name = "product"
 
+
+class BrandDetailView(DetailView):
+    template_name = "products/brand_detail.html"
+    model = Brand
+    pk_url_kwarg = "pk"
+    context_object_name = "brand"
+
+
+class BrandListView(ListView):
+    template_name = "products/brand_list.html"
+    model = Brand
+    pk_url_kwarg = "pk"
+    context_object_name = "brands"
 
 def about(request):
     """
